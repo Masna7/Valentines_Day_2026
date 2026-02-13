@@ -1,180 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Quiz 😏</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Valentine Quiz 😏</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6b6b,#feca57);overflow:hidden}
+.container{text-align:center;background:rgba(255,255,255,.95);padding:40px 30px;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,.2);max-width:480px;width:90%;position:relative;z-index:10}
+h1{font-size:2.4em;color:#e74c3c;margin-bottom:30px;text-shadow:2px 2px 4px rgba(0,0,0,.1);font-weight:700}
+.buttons{display:flex;gap:25px;justify-content:center;flex-wrap:wrap}
+button{padding:16px 32px;font-size:1.1em;border:none;border-radius:40px;cursor:pointer;font-weight:700;transition:.25s;box-shadow:0 10px 25px rgba(0,0,0,.2)}
+.yes-btn{background:#2ecc71;color:#fff;position:relative}.no-btn{background:#e74c3c;color:#fff}
+.yes-btn:hover{transform:scale(1.05);background:#27ae60}.no-btn:hover{transform:scale(1.05);background:#c0392b}
+.cat-screen,.surprise-screen{display:none}
+.cat-image{width:260px;max-width:100%;border-radius:20px;margin:20px 0;box-shadow:0 15px 35px rgba(0,0,0,.3)}
+.cat-text{font-size:1.5em;color:#e74c3c;margin:15px 0;font-weight:700}
+.surprise-btn{background:linear-gradient(45deg,#ff6b6b,#feca57);color:#fff;font-size:1.05em;padding:14px 30px;margin-top:10px}
+.valentine-theme{background:linear-gradient(135deg,#ff1744,#d500f9,#ff4081)!important;color:#fff!important;animation:hb 1.5s infinite}
+.valentine-message{font-size:1.05em;line-height:1.6;margin-top:20px;padding:15px;background:rgba(255,255,255,.2);border-radius:15px}
+@keyframes hb{0%{transform:scale(1)}14%{transform:scale(1.05)}28%{transform:scale(1)}42%{transform:scale(1.05)}70%{transform:scale(1)}}
+.heart{position:absolute;font-size:20px;color:#ff1744;pointer-events:none;animation:float 6s linear infinite;z-index:1}
+@keyframes float{0%{transform:translateY(100vh) rotate(0);opacity:1}100%{transform:translateY(-100px) rotate(360deg);opacity:0}}
+@media(max-width:768px){h1{font-size:2em}.buttons{flex-direction:column;gap:15px}}
+</style></head><body>
+<div class="container" id="quiz">
+  <h1>Do you have a Valentine? 😏</h1>
+  <div class="buttons">
+    <button class="yes-btn" id="yesBtn">Yes 💕</button>
+    <button class="no-btn" id="noBtn">No 😅</button>
+  </div>
+</div>
 
-        body {
-            font-family: 'Arial', sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            overflow: hidden;
-            cursor: pointer;
-        }
+<div class="container cat-screen" id="cat">
+  <img class="cat-image" alt="Laughing Cat" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhISEhIVFRUVFRUVFRUVFRUVFRUQFRUXFhUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rLf/AABEIAKMBNwMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABQYDBAcBAgj/xABGEAACAQIDBQUEBwYFAwUBAAABAgMAEQQSIQUGMUFREyJhcYGRBzKhsdEHQlLR8BPyFkNicoLxFyQ0U3PSJENz/8QAGgEBAAMBAQEAAAAAAAAAAAAAAAECAwQFBv/EACkRAQEAAgICAgICAgMBAAAAAAABAhEDIRIxBDJBE1FhBRQiMmGBkf/aAAwDAQACEQMRAD8A9xREQBERAEREAREQBERAEREAREQBERAEREAREQBERAERED//Z">
+  <div class="cat-text" id="catText">I know you are single 😂</div>
+  <button class="surprise-btn" id="surpriseBtn">Click me for Surprise 🎁</button>
+</div>
 
-        .container {
-            text-align: center;
-            background: rgba(255,255,255,0.95);
-            padding: 60px 40px;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            z-index: 10;
-        }
+<div class="container surprise-screen valentine-theme" id="valentine">
+  <h1>Happy Valentine's Day! 💖</h1>
+  <div class="valentine-message">
+    To the two people who always fight yet never leave: <br>
+    <strong>happy Valentine’s Day.</strong><br>
+    Who needs a boyfriend or girlfriend when we already have daily free drama with each other? 😂❤️
+  </div>
+</div>
 
-        h1 {
-            font-size: 3.5em;
-            color: #e74c3c;
-            margin-bottom: 50px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            font-weight: bold;
-        }
+<script>
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const quiz=document.getElementById("quiz");
+const cat=document.getElementById("cat");
+const catText=document.getElementById("catText");
+const surpriseBtn=document.getElementById("surpriseBtn");
+const valentine=document.getElementById("valentine");
+let moves=0,maxMoves=15;
 
-        .buttons {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        button {
-            padding: 20px 40px;
-            font-size: 1.4em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .yes-btn {
-            background: #2ecc71;
-            color: white;
-            position: relative;
-        }
-
-        .no-btn {
-            background: #e74c3c;
-            color: white;
-        }
-
-        .yes-btn:hover {
-            transform: scale(1.05);
-            background: #27ae60;
-        }
-
-        .no-btn:hover {
-            transform: scale(1.05);
-            background: #c0392b;
-        }
-
-        /* Laughing Cat Screen */
-        .cat-screen {
-            display: none;
-        }
-
-        .cat-image {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin: 20px 0;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            max-width: 100%;
-            height: auto;
-        }
-
-        .cat-text {
-            font-size: 2em;
-            color: #e74c3c;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        /* Surprise Screen */
-        .surprise-screen {
-            display: none;
-        }
-
-        .surprise-btn {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-            font-size: 1.3em;
-            padding: 18px 35px;
-            margin: 30px 0;
-        }
-
-        /* Valentine Theme */
-        .valentine-theme {
-            background: linear-gradient(135deg, #ff1744, #d500f9, #ff4081) !important;
-            color: white !important;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        .valentine-message {
-            font-size: 1.3em;
-            line-height: 1.6;
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.1); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.1); }
-            70% { transform: scale(1); }
-        }
-
-        /* Flying Hearts */
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            color: #ff1744;
-            pointer-events: none;
-            animation: float 6s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5em; }
-            .buttons { flex-direction: column; align-items: center; gap: 20px; }
-            button { padding: 18px 30px; font-size: 1.2em; }
-            .cat-image { width: 250px; height: 250px; }
-        }
-
-        /* Hide scrollbars */
-        body::-webkit-scrollbar { display: none; }
-    </style>
-</head>
-<body>
-    <!-- Main Quiz Screen -->
-    <div class="container" id="quizScreen
+function moveYes(){
+  if(moves>=maxMoves)return;
+  moves++;
+  const rect=quiz.getBoundingClientRect();
+  const x=Math.random()*(rect.width-160);
+  const y=Math.random()*(rect.height-80)+80;
+  yesBtn.style.position="absolute";
+  yesBtn.style.left=x+"px";
+  yesBtn.style.top=y+"px";
+}
+yesBtn.addEventListener("mouseenter",e=>{e.preventDefault();moveYes();});
+yesBtn.addEventListener("click",e=>{e.preventDefault();moveYes();});
+noBtn.addEventListener("click",()=>{
+  quiz.style.display="none";
+  cat.style.display="block";
+  setTimeout(()=>{catText.textContent="Forever alone... but with me! 😜";},2000);
+});
+surpriseBtn.addEventListener("click",()=>{
+  cat.style.display="none";
+  valentine.style.display="block";
+  startHearts();
+});
+function startHearts(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.textContent=["💖","💕","❤️","💗","💝"][Math.floor(Math.random()*5)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+  },300);
+}
+</script>
+</body></html>
