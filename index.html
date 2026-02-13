@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Quiz 😏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 60px 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #e74c3c;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 20px 40px;
+            font-size: 1.4em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .yes-btn {
+            background: #2ecc71;
+            color: white;
+            position: relative;
+        }
+
+        .no-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.05);
+            background: #27ae60;
+        }
+
+        .no-btn:hover {
+            transform: scale(1.05);
+            background: #c0392b;
+        }
+
+        /* Laughing Cat Screen */
+        .cat-screen {
+            display: none;
+        }
+
+        .cat-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cat-text {
+            font-size: 2em;
+            color: #e74c3c;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        /* Surprise Screen */
+        .surprise-screen {
+            display: none;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            font-size: 1.3em;
+            padding: 18px 35px;
+            margin: 30px 0;
+        }
+
+        /* Valentine Theme */
+        .valentine-theme {
+            background: linear-gradient(135deg, #ff1744, #d500f9, #ff4081) !important;
+            color: white !important;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .valentine-message {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        /* Flying Hearts */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff1744;
+            pointer-events: none;
+            animation: float 6s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .buttons { flex-direction: column; align-items: center; gap: 20px; }
+            button { padding: 18px 30px; font-size: 1.2em; }
+            .cat-image { width: 250px; height: 250px; }
+        }
+
+        /* Hide scrollbars */
+        body::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Main Quiz Screen -->
+    <div class="container" id="quizScreen
