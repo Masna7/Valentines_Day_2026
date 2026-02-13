@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Valentine Quiz !</title>
+    <title>Valentine Quiz 😏</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:Arial,sans-serif;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6b6b,#feca57);overflow:hidden;position:relative}
@@ -15,7 +15,7 @@
         .yes-btn:hover{transform:scale(1.1)!important;background:#27ae60!important}
         .no-btn:hover{transform:scale(1.05);background:#c0392b}
         .cat-screen,.surprise-screen{display:none}
-        .cat-image{width:300px;max-width:100%;height:auto;border-radius:20px;margin:20px 0;box-shadow:0 15px 35px rgba(0,0,0,.3)}
+        .cat-video{width:350px;max-width:100%;height:auto;border-radius:20px;margin:20px 0;box-shadow:0 15px 35px rgba(0,0,0,.3)}
         .cat-text{font-size:2em;color:#e74c3c;margin:20px 0;font-weight:700}
         .surprise-btn{background:linear-gradient(45deg,#ff6b6b,#feca57);color:#fff;font-size:1.3em;padding:18px 35px;margin:30px 0}
         .valentine-theme{background:linear-gradient(135deg,#ff1744,#d500f9,#ff4081)!important;color:#fff!important;animation:heartbeat 1.5s infinite}
@@ -23,22 +23,24 @@
         @keyframes heartbeat{0%{transform:scale(1)}14%{transform:scale(1.1)}28%{transform:scale(1)}42%{transform:scale(1.1)}70%{transform:scale(1)}}
         .heart{position:absolute;font-size:20px;color:#ff1744;pointer-events:none;animation:float 6s linear infinite;z-index:1}
         @keyframes float{0%{transform:translateY(100vh) rotate(0);opacity:1}100%{transform:translateY(-100px) rotate(360deg);opacity:0}}
-        @media(max-width:768px){h1{font-size:2.5em}.buttons{flex-direction:column;gap:20px}}
+        @media(max-width:768px){h1{font-size:2.5em}.buttons{flex-direction:column;gap:20px}.cat-video{width:280px}}
     </style>
 </head>
 <body>
     <div class="container" id="quizScreen">
-        <h1>Do you have a Valentine? </h1>
+        <h1>Do you have a Valentine? 😏</h1>
         <div class="buttons">
             <button class="yes-btn" id="yesBtn">Yes 💕</button>
-            <button class="no-btn" id="noBtn">No</button>
+            <button class="no-btn" id="noBtn">No 😅</button>
         </div>
     </div>
 
     <div class="container cat-screen" id="catScreen">
-        <!-- ⬇️ PASTE YOUR GIF URL BELOW (between the quotes after src=) ⬇️ -->
-        <img class="cat-image" alt="Laughing Cat" src="https://imgur.com/gallery/zach-galifianakis-wheezing-laugh-U6jmzij#/t/laugh">
-        <!-- ⬆️ Example: src="https://i.imgur.com/abc123.gif" ⬆️ -->
+        <!-- VIDEO TAG for MP4 - Auto-plays and loops! -->
+        <video class="cat-video" autoplay loop muted playsinline>
+            <source src="https://i.imgur.com/n8UAhKU.mp4" type="video/mp4">
+            Your browser doesn't support video.
+        </video>
         
         <div class="cat-text" id="catText">I KNEW IT! 😂😂😂</div>
         <button class="surprise-btn" id="surpriseBtn">Click me for Surprise 🎁</button>
@@ -85,11 +87,11 @@
             }, 2000);
         });
 
-        /*surpriseBtn.addEventListener('click', () => {
+        surpriseBtn.addEventListener('click', () => {
             catScreen.style.display = 'none';
             valentineScreen.style.display = 'block';
             createFlyingHearts();
-        }); */
+        });
 
         function createFlyingHearts() {
             setInterval(() => {
