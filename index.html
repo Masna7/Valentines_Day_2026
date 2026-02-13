@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Valentine Quiz</title>
+    <title>Valentine Quiz 😏</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:Arial,sans-serif;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6b6b,#feca57);overflow:hidden;position:relative}
         .container{text-align:center;background:rgba(255,255,255,.95);padding:60px 40px;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,.2);max-width:500px;width:90%;position:relative;z-index:10}
-        h1{font-size:3.5em;color:#e74c3c;margin-bottom:50px;text-shadow:2px 2px 4px rgba(0,0,0,.1);font-weight:700;position:relative;z-index:20;-webkit-text-stroke: 2px #87CEEB;
-    text-stroke: 2px #87CEEB;
-    paint-order: stroke fill;}
+        h1{
+            font-size:3.5em;
+            color:#e74c3c;
+            margin-bottom:50px;
+            text-shadow:2px 2px 4px rgba(0,0,0,.1);
+            font-weight:700;
+            position:relative;
+            z-index:20;
+            -webkit-text-stroke:2px #87CEEB;
+            text-stroke:2px #87CEEB;
+            paint-order:stroke fill;
+        }
         .buttons{position:relative;z-index:20;display:flex;gap:30px;justify-content:center;flex-wrap:wrap;padding:20px}
         button{padding:20px 40px;font-size:1.4em;border:none;border-radius:50px;cursor:pointer;font-weight:700;transition:.3s;box-shadow:0 10px 25px rgba(0,0,0,.2);position:relative}
         .yes-btn{background:#2ecc71;color:#fff}.no-btn{background:#e74c3c;color:#fff}
@@ -30,22 +39,17 @@
 </head>
 <body>
     <div class="container" id="quizScreen">
-        <h1>Do you have a Valentine?</h1>
+        <h1>Do you have a Valentine? </h1>
         <div class="buttons">
             <button class="yes-btn" id="yesBtn">Yes 💕</button>
-            <button class="no-btn" id="noBtn">No 😅</button>
+            <button class="no-btn" id="noBtn">No </button>
         </div>
     </div>
 
     <div class="container cat-screen" id="catScreen">
-        <!-- VIDEO TAG for MP4 - Auto-plays and loops! -->
-        <!-- <video class="cat-video" autoplay loop muted playsinline>
+        <video class="cat-video" id="laughVideo" loop muted playsinline>
             <source src="https://i.imgur.com/n8UAhKU.mp4" type="video/mp4">
-            Your browser doesn't support video.
-        </video> -->
-
-        <img class="cat-video" alt="Laughing Cat" src="https://media.tenor.com/UF2cPcTrLtkAAAAM/makin-smth-with-this-trust-w-gif.gif">
-        
+        </video>
         <div class="cat-text" id="catText">I KNEW IT! 😂😂😂</div>
         <button class="surprise-btn" id="surpriseBtn">Click me for Surprise 🎁</button>
     </div>
@@ -66,6 +70,7 @@
         const catText = document.getElementById('catText');
         const surpriseBtn = document.getElementById('surpriseBtn');
         const valentineScreen = document.getElementById('valentineScreen');
+        const laughVideo = document.getElementById('laughVideo');
 
         function moveYesButton() {
             const x = (Math.random() * (window.innerWidth - 200));
@@ -82,11 +87,17 @@
         yesBtn.addEventListener('touchstart', (e) => {e.preventDefault();moveYesButton();});
         yesBtn.addEventListener('click', (e) => {e.preventDefault();moveYesButton();});
 
+        // NO BUTTON - Fixed with video play trigger
         noBtn.addEventListener('click', () => {
             quizScreen.style.display = 'none';
             catScreen.style.display = 'block';
+            
+            // Force video to play
+            laughVideo.play().catch(e => console.log('Video autoplay blocked:', e));
+            
+            // Change text after 2 seconds
             setTimeout(() => {
-                catText.textContent = 'Enjoy SingleHood !';
+                catText.textContent = 'Cheers to Staying Single!';
                 catText.style.color = '#f39c12';
             }, 5000);
         });
